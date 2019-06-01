@@ -25,20 +25,43 @@
         let height = 600;
         let ballX = width/2;
         let ballY = height-60;
+        let xMove = 1;
+        let yMove = -1;
+
 
 
         function ball() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);          
             ctx.beginPath();
             ctx.fillStyle = 'red';
             ctx.arc(ballX, ballY, 15, 0, Math.PI * 2, false);
             ctx.fill();
             ctx.closePath();
-        }
 
-        ball();
+            
+                
+            }
+            
+        function moveBall() {
+            ball();
 
+            if(ballX > width || ballX <0) {
+                xMove = -xMove;
+            }
+            if(ballY > height || ballY < 0) {
+                yMove = -yMove;
+            }
 
-         
+            ballX += xMove;
+            ballY += yMove;           
+
+        }    
+
+        
+
+        
+
+setInterval(moveBall, 10);        
     
     
     
