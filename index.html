@@ -19,10 +19,26 @@
     </style>  
 
     <script>
-      var canvas = document.getElementById('canvas');
-        var ctx = canvas.getContext('2d');
-        ctx.fillStyle = 'green';
-        ctx.fillRect(10, 10, 100, 100);      
+        let canvas = document.getElementById('canvas');
+        let ctx = canvas.getContext('2d');
+        let width = 800;
+        let height = 600;
+        let ballX = width/2;
+        let ballY = height-60;
+
+
+        function ball() {
+            ctx.beginPath();
+            ctx.fillStyle = 'red';
+            ctx.arc(ballX, ballY, 15, 0, Math.PI * 2, false);
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        ball();
+
+
+         
     
     
     
@@ -34,3 +50,4 @@
 
   </body>
 </html>
+
