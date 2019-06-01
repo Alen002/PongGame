@@ -23,51 +23,77 @@
         let ctx = canvas.getContext('2d');
         let width = 800;
         let height = 600;
+
         let ballX = width/2;
         let ballY = height-60;
-        let xMove = 1;
+        let xMove = 1.5;
         let yMove = -1;
 
-
-
+        let spriteX = width/2;
+        let spriteY = height-20;
+        let spriteHeight = 20;
+        let spriteWidth = 100;
+        
         function ball() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);          
+            //ctx.clearRect(0, 0, canvas.width, canvas.height);          
             ctx.beginPath();
             ctx.fillStyle = 'red';
             ctx.arc(ballX, ballY, 15, 0, Math.PI * 2, false);
             ctx.fill();
-            ctx.closePath();
-
-            
-                
+            ctx.closePath();           
             }
             
-        function moveBall() {
+        function move() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);   
+
             ball();
+            ballX += xMove;
+            ballY += yMove;  
 
             if(ballX > width || ballX <0) {
                 xMove = -xMove;
             }
-            if(ballY > height || ballY < 0) {
+            else if(ballY > height || ballY < 0) {
                 yMove = -yMove;
-            }
+            }  
 
-            ballX += xMove;
-            ballY += yMove;           
+            sprite();
 
         }    
 
-        
+        function sprite() {
+            ctx.beginPath();
+            ctx.fillStyle = 'green';
+            ctx.rect(spriteX, spriteY, spriteWidth, spriteHeight );
+            ctx.fill();
+            ctx.closePath();    
+        } 
+
+             
+
+        function game() {
+            move();
+           
+        }        
 
         
+        document.addEventListener('keydown', function (e) {
+            if (e.key === "p") {
+                alert("Paused");
+            }
+            if(e.key === "ArrowLeft") { 
+                spriteX -= 10;
+            }
+            if(e.key === "ArrowRight") { 
+                spriteX += 10;
+            }
+            
+});
 
-setInterval(moveBall, 10);        
-    
-    
-    
+        setInterval(game, 2);  
+            
     
     </script>
-
 
 
 
