@@ -41,8 +41,16 @@
             ctx.arc(ballX, ballY, 15, 0, Math.PI * 2, false);
             ctx.fill();
             ctx.closePath();           
-            }
-            
+        }
+
+        function sprite() {
+            ctx.beginPath();
+            ctx.fillStyle = 'green';
+            ctx.rect(spriteX, spriteY, spriteWidth, spriteHeight );
+            ctx.fill();
+            ctx.closePath();    
+        } 
+
         function move() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);   
 
@@ -60,37 +68,21 @@
             sprite();
 
         }    
-
-        function sprite() {
-            ctx.beginPath();
-            ctx.fillStyle = 'green';
-            ctx.rect(spriteX, spriteY, spriteWidth, spriteHeight );
-            ctx.fill();
-            ctx.closePath();    
-        } 
-
-             
-
-        function game() {
-            move();
-           
-        }        
-
         
         document.addEventListener('keydown', function (e) {
             if (e.key === "p") {
                 alert("Paused");
             }
             if(e.key === "ArrowLeft") { 
-                spriteX -= 10;
+                spriteX -= 2;
             }
             if(e.key === "ArrowRight") { 
-                spriteX += 10;
+                spriteX += 2;
             }
             
 });
 
-        setInterval(game, 2);  
+        setInterval(move, 2);  
             
     
     </script>
