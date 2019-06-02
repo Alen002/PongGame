@@ -33,6 +33,9 @@
         let spriteY = height-20;
         let spriteHeight = 20;
         let spriteWidth = 100;
+
+        let right = false;
+        let left = false;
         
         function ball() {
             //ctx.clearRect(0, 0, canvas.width, canvas.height);          
@@ -55,6 +58,7 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);   
 
             ball();
+            sprite();
             ballX += xMove;
             ballY += yMove;  
 
@@ -65,22 +69,36 @@
                 yMove = -yMove;
             }  
 
-            sprite();
-
-        }    
-        
-        document.addEventListener('keydown', function (e) {
-            if (e.key === "p") {
-                alert("Paused");
-            }
-            if(e.key === "ArrowLeft") { 
+            if(left === true) {
                 spriteX -= 2;
             }
-            if(e.key === "ArrowRight") { 
+            else if(right === true) {
                 spriteX += 2;
             }
-            
-});
+        }    
+        
+
+        document.addEventListener("keydown", keyDown, false);
+        document.addEventListener("keyup", keyUp, false);
+
+        function keyDown(e) {
+            if (e.key === "ArrowLeft") {
+                left = true;
+            }
+            if (e.key === "ArrowRight") {
+                right = true;
+            }
+        }
+
+        function keyUp(e) {
+            if (e.key === "ArrowLeft") {
+                left = false;
+            }
+            if (e.key === "ArrowRight") {
+                right = false;
+            }
+        }
+
 
         setInterval(move, 2);  
             
